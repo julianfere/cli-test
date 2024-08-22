@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import React from 'react';
 import {render} from 'ink';
-// import meow from 'meow';
 import App from './app.js';
-import {ContextProvider} from './context.js';
+// import meow from 'meow';
 
 // const cli = meow(
 // 	`
@@ -27,9 +26,7 @@ import {ContextProvider} from './context.js';
 // 	},
 // );
 
-const {waitUntilExit} = render(
-	<ContextProvider>
-		<App />
-	</ContextProvider>,
-);
+const {waitUntilExit, clear} = render(<App />);
+console.clear();
 await waitUntilExit();
+clear();
