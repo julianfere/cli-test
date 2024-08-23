@@ -3,12 +3,14 @@ import {CliRouter} from './context/CliRouter/index.js';
 import {IRoute} from './context/CliRouter/types.js';
 import Menu from './screens/Menu/index.js';
 import Rails from './screens/Rails/index.js';
+import Native from './screens/Native/index.js';
+import ReactScreen from './screens/ReactApp/index.js';
 
 const ROUTES: IRoute[] = [
 	{
+		index: true,
 		key: 'menu',
 		screen: <Menu />,
-		index: true,
 	},
 	{
 		key: 'rails-api',
@@ -16,11 +18,11 @@ const ROUTES: IRoute[] = [
 	},
 	{
 		key: 'native-app',
-		screen: <Menu />,
+		screen: <Native />,
 	},
 	{
 		key: 'react-app',
-		screen: <Menu />,
+		screen: <ReactScreen />,
 	},
 ];
 

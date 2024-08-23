@@ -27,6 +27,8 @@ import App from './app.js';
 // );
 
 const {waitUntilExit, clear} = render(<App />);
-console.clear();
+
 await waitUntilExit();
+
+console.clear();
 clear();

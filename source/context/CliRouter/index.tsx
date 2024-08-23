@@ -1,5 +1,6 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useMemo, useState} from 'react';
 import {ICliRouterContext, IRoute} from './types.js';
+import ScreenNotFound from './ScreenNotFound.js';
 
 const CliRouterContext = createContext<ICliRouterContext>({
 	routes: [],
@@ -7,21 +8,21 @@ const CliRouterContext = createContext<ICliRouterContext>({
 });
 
 export const CliRouter = ({routes}: {routes: IRoute[]}) => {
-	const [currentRoute, setCurrentRoute] = useState<IRoute | undefined>(
-		routes.find(route => route.index),
+	const indexRoute = useMemo(
+		() => routes.find(route => route.index) ?? null,
+		[routes],
 	);
+	const [currentRoute, setCurrentRoute] = useState<IRoute | null>(indexRoute);
 
 	const navigate = (key: string) => {
 		const route = routes.find(route => route.key === key);
-		if (route) {
-			console.clear();
-			setCurrentRoute(route);
-		}
+		// console.clear();
+		setCurrentRoute(route || null);
 	};
 
 	return (
 		<CliRouterContext.Provider value={{routes, navigate}}>
-			{currentRoute ? currentRoute.screen : null}
+			{currentRoute?.screen || <ScreenNotFound />}
 		</CliRouterContext.Provider>
 	);
 };
